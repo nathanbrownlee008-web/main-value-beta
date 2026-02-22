@@ -15,39 +15,17 @@ body {
   padding: 24px 20px 10px 20px;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 26px;
-  font-weight: 600;
-}
+.header h1 { margin: 0; font-size: 26px; font-weight: 600; }
+.subtitle { margin-top: 4px; font-size: 13px; color: #9fb3c8; }
 
-.subtitle {
-  margin-top: 4px;
-  font-size: 13px;
-  color: #9fb3c8;
-}
+.container { padding: 20px; max-width: 1200px; margin: auto; }
 
-.container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
-}
+.status, .count { font-size: 13px; color: #9fb3c8; margin-bottom: 6px; }
 
-.status, .count {
-  font-size: 13px;
-  color: #9fb3c8;
-  margin-bottom: 6px;
-}
-
-.card-grid {
-  display: grid;
-  gap: 16px;
-}
+.card-grid { display: grid; gap: 16px; }
 
 @media(min-width: 768px){
-  .card-grid {
-    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-  }
+  .card-grid { grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); }
 }
 
 .card {
@@ -55,24 +33,11 @@ body {
   border-radius: 16px;
   padding: 18px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  transition: transform 0.2s ease;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-}
+.match-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
 
-.match-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.meta {
-  font-size: 13px;
-  color: #9fb3c8;
-  margin-bottom: 10px;
-}
+.meta { font-size: 13px; color: #9fb3c8; margin-bottom: 10px; }
 
 .badge {
   display: inline-block;
@@ -82,25 +47,11 @@ body {
   font-weight: 600;
 }
 
-.odds {
-  background: #1e2b44;
-  color: #dbe7f5;
-}
+.odds { background: #1e2b44; color: #dbe7f5; }
 
-.value-high {
-  background: #064e3b;
-  color: #34d399;
-}
-
-.value-mid {
-  background: #3f2f00;
-  color: #fbbf24;
-}
-
-.value-low {
-  background: #3f1d1d;
-  color: #f87171;
-}
+.value-high { background: #064e3b; color: #34d399; }
+.value-mid { background: #3f2f00; color: #fbbf24; }
+.value-low { background: #3f1d1d; color: #f87171; }
 
 .btn {
   padding: 6px 12px;
@@ -111,10 +62,6 @@ body {
   cursor: pointer;
 }
 
-.btn:hover {
-  background: #162236;
-}
+.btn:hover { background: #162236; }
 
-.wide {
-  max-width: 100% !important;
-}
+.wide { max-width: 100% !important; }

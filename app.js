@@ -35,7 +35,7 @@ async function loadCards(){
   
   if(!data || data.length === 0){
     statusEl.textContent = "No data found";
-    countEl.textContent = "0 rows";
+    countEl.textContent = "0 bets";
     return;
   }
   
@@ -50,20 +50,20 @@ async function loadCards(){
     
     const title = document.createElement("div");
     title.className = "match-title";
-    title.textContent = row.home + " vs " + row.away;
+    title.textContent = row.match || "Match";
     
     const meta = document.createElement("div");
     meta.className = "meta";
-    meta.textContent = row.league + " • " + row.bet_date;
+    meta.textContent = (row.market || "") + " • " + (row.bet_date || "");
     
     const odds = document.createElement("span");
     odds.className = "badge odds";
-    odds.textContent = "Odds: " + row.bookmaker_odds;
+    odds.textContent = "Odds: " + (row.odds ?? "-");
     
     const value = document.createElement("span");
-    value.className = "badge " + getValueClass(row.value_percent || 0);
+    value.className = "badge " + getValueClass(row.value_rating || 0);
     value.style.marginLeft = "8px";
-    value.textContent = "Value: " + (row.value_percent || 0) + "%";
+    value.textContent = "Value: " + (row.value_rating || 0);
     
     card.appendChild(title);
     card.appendChild(meta);
