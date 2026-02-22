@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Picks Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="header">
+  <div>
+    <h1>Picks Dashboard</h1>
+    <p class="subtitle">Value Bets • Live Supabase</p>
+  </div>
+  <button id="wideBtn" class="btn ghost">Wide</button>
+</header>
+
+<main id="mainContainer" class="container">
+  <div id="status" class="status">Loading...</div>
+  <div id="count" class="count"></div>
+  <div id="cardGrid" class="card-grid"></div>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
