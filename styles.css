@@ -21,16 +21,23 @@ margin-bottom:25px;
 
 .bankroll-section{
 display:flex;
-gap:20px;
+justify-content:space-between;
 align-items:center;
 flex-wrap:wrap;
 margin-bottom:25px;
+gap:20px;
 }
 
-.current-box{
-background:#1e293b;
-padding:12px 20px;
-border-radius:10px;
+.bankroll-left input{
+padding:6px 10px;
+border-radius:6px;
+border:none;
+font-size:16px;
+}
+
+.current-inline{
+font-size:18px;
+margin-bottom:10px;
 }
 
 .stats-grid{
@@ -48,18 +55,9 @@ text-align:center;
 font-size:14px;
 }
 
-.card{background:#1e293b;padding:12px;border-radius:10px;margin-bottom:12px}
-
-select{
-padding:5px;
-border-radius:6px;
-border:none;
-color:white;
-}
-
-select.won{background:#065f46}
-select.lost{background:#7f1d1d}
-select.pending{background:#334155}
+select.won{background:#065f46;color:white}
+select.lost{background:#7f1d1d;color:white}
+select.pending{background:#334155;color:white}
 
 table{width:100%;border-collapse:collapse;margin-top:20px}
 td,th{padding:10px;border-bottom:1px solid #334155}
