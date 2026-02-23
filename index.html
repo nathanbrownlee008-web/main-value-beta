@@ -23,14 +23,22 @@
 </section>
 
 <section id="trackerSection" style="display:none;">
-<div class="tracker-controls">
-<label>Starting Bankroll</label>
+
+<div class="bankroll-section">
+<div>
+<label>Starting Bankroll</label><br>
 <input type="number" id="startingBankroll" value="1000"/>
+</div>
+
+<div class="current-box">
+Current Bankroll<br>
+<strong>£<span id="currentBankroll">0</span></strong>
+</div>
+
 <button onclick="exportCSV()">Export CSV</button>
 </div>
 
 <div class="stats-grid">
-<div>Bankroll<br><strong>£<span id="bankroll">0</span></strong></div>
 <div>Profit<br><strong>£<span id="profit">0</span></strong></div>
 <div>ROI<br><strong><span id="roi">0</span>%</strong></div>
 <div>Win Rate<br><strong><span id="winrate">0</span>%</strong></div>

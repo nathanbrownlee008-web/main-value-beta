@@ -3,19 +3,16 @@ const SUPABASE_URL="https://krmmmutcejnzdfupexpv.supabase.co";
 const SUPABASE_KEY="sb_publishable_3NHjMMVw1lai9UNAA-0QZA_sKM21LgD";
 const client=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-// Persist starting bankroll
-const savedBankroll = localStorage.getItem("starting_bankroll");
-if(savedBankroll){
-  document.getElementById("startingBankroll").value = savedBankroll;
-}
+const savedBankroll=localStorage.getItem("starting_bankroll");
+if(savedBankroll){startingBankroll.value=savedBankroll}
 
-document.getElementById("startingBankroll").addEventListener("input", function(){
-  localStorage.setItem("starting_bankroll", this.value);
-  loadTracker();
+startingBankroll.addEventListener("input",function(){
+localStorage.setItem("starting_bankroll",this.value);
+loadTracker();
 });
 
-document.getElementById("tabBets").onclick=()=>switchTab(true);
-document.getElementById("tabTracker").onclick=()=>switchTab(false);
+tabBets.onclick=()=>switchTab(true);
+tabTracker.onclick=()=>switchTab(false);
 
 function switchTab(show){
 betsSection.style.display=show?"block":"none";
@@ -55,7 +52,7 @@ let chart;
 
 async function loadTracker(){
 const {data}=await client.from("bet_tracker").select("*").order("created_at",{ascending:true});
-let start=parseFloat(startingBankroll.value);
+let start=parseFloat(startingBankroll.value)||0;
 let bankroll=start;
 let profit=0;
 let wins=0;
@@ -76,14 +73,16 @@ totalOdds+=row.odds;
 bankroll=start+profit;
 history.push(bankroll);
 
+let resultClass=row.result||"pending";
+
 html+=`<tr>
 <td>${row.match}</td>
-<td><input type="number" value="${row.stake}" onchange="updateStake(${row.id},this.value)"/></td>
+<td>${row.stake}</td>
 <td>
-<select onchange="updateResult(${row.id},this.value)">
-<option ${row.result==="pending"?"selected":""}>pending</option>
-<option ${row.result==="won"?"selected":""}>won</option>
-<option ${row.result==="lost"?"selected":""}>lost</option>
+<select class="${resultClass}" onchange="updateResult(${row.id},this.value)">
+<option value="pending" ${row.result==="pending"?"selected":""}>pending</option>
+<option value="won" ${row.result==="won"?"selected":""}>won</option>
+<option value="lost" ${row.result==="lost"?"selected":""}>lost</option>
 </select>
 </td>
 <td>£${p.toFixed(2)}</td>
@@ -93,7 +92,7 @@ html+=`<tr>
 html+="</table>";
 trackerTable.innerHTML=html;
 
-bankrollElem.innerText=bankroll.toFixed(2);
+currentBankroll.innerText=bankroll.toFixed(2);
 profitElem.innerText=profit.toFixed(2);
 roiElem.innerText=totalStake?((profit/totalStake)*100).toFixed(1):0;
 winrateElem.innerText=data.length?((wins/data.length)*100).toFixed(1):0;
@@ -106,11 +105,6 @@ renderChart(history);
 
 async function updateResult(id,val){
 await client.from("bet_tracker").update({result:val}).eq("id",id);
-loadTracker();
-}
-
-async function updateStake(id,val){
-await client.from("bet_tracker").update({stake:parseFloat(val)}).eq("id",id);
 loadTracker();
 }
 
@@ -138,7 +132,6 @@ a.click();
 });
 }
 
-const bankrollElem=document.getElementById("bankroll");
 const profitElem=document.getElementById("profit");
 const roiElem=document.getElementById("roi");
 const winrateElem=document.getElementById("winrate");
