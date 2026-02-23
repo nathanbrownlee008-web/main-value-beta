@@ -25,20 +25,17 @@
 <section id="trackerSection" style="display:none;">
 
 <div class="bankroll-section">
-
-<div class="bankroll-left">
+<div>
 <label>Starting Bankroll</label><br>
 <input type="number" id="startingBankroll" value="1000"/>
 </div>
 
-<div class="bankroll-right">
-<div class="current-inline">
-Current Bankroll: 
+<div class="current-box">
+Current Bankroll<br>
 <strong>£<span id="currentBankroll">0</span></strong>
 </div>
-<button onclick="exportCSV()">Export CSV</button>
-</div>
 
+<button onclick="exportCSV()">Export CSV</button>
 </div>
 
 <div class="stats-grid">
@@ -52,7 +49,9 @@ Current Bankroll:
 
 <canvas id="chart"></canvas>
 
+<div class="tracker-table-wrapper">
 <div id="trackerTable"></div>
+</div>
 
 </section>
 
