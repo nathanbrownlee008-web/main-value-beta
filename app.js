@@ -22,8 +22,6 @@ card.innerHTML=`
 <h3>${row.match}</h3>
 <p>${row.market} • ${row.bet_date}</p>
 <p>Odds: ${row.odds}</p>
-<label>Stake: £</label>
-<input type="number" id="stake_${row.id}" value="10"/>
 <button onclick='addToTracker(${JSON.stringify(row)})'>Add to Tracker</button>
 `;
 betsGrid.appendChild(card);
@@ -31,12 +29,11 @@ betsGrid.appendChild(card);
 }
 
 async function addToTracker(row){
-const stake=parseFloat(document.getElementById("stake_"+row.id).value);
 await client.from("bet_tracker").insert({
 match:row.match,
 market:row.market,
 odds:row.odds,
-stake:stake,
+stake:10,
 result:"pending"
 });
 loadTracker();
@@ -50,23 +47,26 @@ let start=parseFloat(startingBankroll.value);
 let bankroll=start;
 let profit=0;
 let wins=0;
-let history=[];
+let losses=0;
 let totalStake=0;
+let totalOdds=0;
+let history=[];
 
 let html="<table><tr><th>Match</th><th>Stake</th><th>Result</th><th>Profit</th></tr>";
 
 data.forEach(row=>{
 let p=0;
 if(row.result==="won"){p=row.stake*(row.odds-1);wins++;}
-if(row.result==="lost"){p=-row.stake;}
+if(row.result==="lost"){p=-row.stake;losses++;}
 profit+=p;
 totalStake+=row.stake;
+totalOdds+=row.odds;
 bankroll=start+profit;
 history.push(bankroll);
 
 html+=`<tr>
 <td>${row.match}</td>
-<td>£${row.stake}</td>
+<td><input type="number" value="${row.stake}" onchange="updateStake(${row.id},this.value)"/></td>
 <td>
 <select onchange="updateResult(${row.id},this.value)">
 <option ${row.result==="pending"?"selected":""}>pending</option>
@@ -84,13 +84,20 @@ trackerTable.innerHTML=html;
 document.getElementById("bankroll").innerText=bankroll.toFixed(2);
 document.getElementById("profit").innerText=profit.toFixed(2);
 document.getElementById("roi").innerText=totalStake?((profit/totalStake)*100).toFixed(1):0;
+document.getElementById("avgOdds").innerText=data.length?(totalOdds/data.length).toFixed(2):0;
 document.getElementById("winrate").innerText=data.length?((wins/data.length)*100).toFixed(1):0;
+document.getElementById("lossrate").innerText=data.length?((losses/data.length)*100).toFixed(1):0;
 
 renderChart(history);
 }
 
 async function updateResult(id,val){
 await client.from("bet_tracker").update({result:val}).eq("id",id);
+loadTracker();
+}
+
+async function updateStake(id,val){
+await client.from("bet_tracker").update({stake:parseFloat(val)}).eq("id",id);
 loadTracker();
 }
 

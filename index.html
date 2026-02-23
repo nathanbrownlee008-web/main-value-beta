@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Picks Dashboard Pro</title>
+<title>Top Daily Tips</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="styles.css"/>
@@ -11,7 +11,7 @@
 <body>
 
 <header>
-<h1>Picks Dashboard</h1>
+<h1>Top Daily Tips</h1>
 <div class="tabs">
 <button id="tabBets" class="active">Value Bets</button>
 <button id="tabTracker">Tracker</button>
@@ -33,7 +33,9 @@
 <div>Bankroll: £<span id="bankroll">0</span></div>
 <div>Profit: £<span id="profit">0</span></div>
 <div>ROI: <span id="roi">0</span>%</div>
-<div>Win Rate: <span id="winrate">0</span>%</div>
+<div>Avg Odds: <span id="avgOdds">0</span></div>
+<div>Win %: <span id="winrate">0</span>%</div>
+<div>Loss %: <span id="lossrate">0</span>%</div>
 </div>
 
 <canvas id="chart"></canvas>
