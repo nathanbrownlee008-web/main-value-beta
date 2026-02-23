@@ -1,26 +1,48 @@
+
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Picks Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Picks Dashboard Pro</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
 
 <header class="header">
-  <div>
-    <h1>Picks Dashboard</h1>
-    <p class="subtitle">Value Bets • Live Supabase</p>
+  <h1>Picks Dashboard</h1>
+  <div class="tabs">
+    <button class="tab active" id="tabBets">Value Bets</button>
+    <button class="tab" id="tabTracker">Tracker</button>
   </div>
-  <button id="wideBtn" class="btn ghost">Wide</button>
 </header>
 
-<main id="mainContainer" class="container">
-  <div id="status" class="status">Loading...</div>
-  <div id="count" class="count"></div>
-  <div id="cardGrid" class="card-grid"></div>
+<main class="container">
+
+<!-- VALUE BETS -->
+<section id="betsSection">
+  <div id="betsGrid" class="card-grid"></div>
+</section>
+
+<!-- TRACKER -->
+<section id="trackerSection" style="display:none;">
+  <div class="tracker-summary">
+    <div>
+      <label>Starting Bankroll</label>
+      <input type="number" id="startingBankroll" value="1000"/>
+    </div>
+    <div class="summary-box">Current: £<span id="currentBankroll">0</span></div>
+    <div class="summary-box">Profit: £<span id="totalProfit">0</span></div>
+    <div class="summary-box">ROI: <span id="roi">0</span>%</div>
+  </div>
+
+  <canvas id="bankrollChart"></canvas>
+
+  <div id="trackerTable"></div>
+</section>
+
 </main>
 
 <script src="app.js"></script>

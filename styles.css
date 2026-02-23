@@ -1,67 +1,78 @@
 
-* { box-sizing: border-box; }
-
 body {
-  margin: 0;
-  font-family: Inter, Arial, sans-serif;
-  background: linear-gradient(160deg,#0b1220 0%,#111a2e 40%,#0d1627 100%);
-  color: #e6edf3;
+  margin:0;
+  font-family: Inter, sans-serif;
+  background:#0f172a;
+  color:#e2e8f0;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 20px 10px 20px;
+  padding:20px;
 }
 
-.header h1 { margin: 0; font-size: 26px; font-weight: 600; }
-.subtitle { margin-top: 4px; font-size: 13px; color: #9fb3c8; }
+.tabs {
+  margin-top:10px;
+}
 
-.container { padding: 20px; max-width: 1200px; margin: auto; }
+.tab {
+  padding:8px 14px;
+  margin-right:8px;
+  background:#1e293b;
+  border:none;
+  border-radius:8px;
+  color:#e2e8f0;
+  cursor:pointer;
+}
 
-.status, .count { font-size: 13px; color: #9fb3c8; margin-bottom: 6px; }
+.tab.active {
+  background:#334155;
+}
 
-.card-grid { display: grid; gap: 16px; }
+.container {
+  padding:20px;
+}
 
-@media(min-width: 768px){
-  .card-grid { grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); }
+.card-grid {
+  display:grid;
+  gap:16px;
 }
 
 .card {
-  background: #121c2f;
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  background:#1e293b;
+  padding:16px;
+  border-radius:12px;
 }
 
-.match-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
-
-.meta { font-size: 13px; color: #9fb3c8; margin-bottom: 10px; }
-
-.badge {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
+.button {
+  margin-top:8px;
+  padding:6px 10px;
+  background:#334155;
+  border:none;
+  border-radius:6px;
+  color:white;
+  cursor:pointer;
 }
 
-.odds { background: #1e2b44; color: #dbe7f5; }
-
-.value-high { background: #064e3b; color: #34d399; }
-.value-mid { background: #3f2f00; color: #fbbf24; }
-.value-low { background: #3f1d1d; color: #f87171; }
-
-.btn {
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid #2a3a55;
-  background: transparent;
-  color: #cbd5e1;
-  cursor: pointer;
+.tracker-summary {
+  display:flex;
+  gap:16px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
 }
 
-.btn:hover { background: #162236; }
+.summary-box {
+  background:#1e293b;
+  padding:12px;
+  border-radius:10px;
+}
 
-.wide { max-width: 100% !important; }
+table {
+  width:100%;
+  border-collapse:collapse;
+  margin-top:20px;
+}
+
+td, th {
+  padding:8px;
+  border-bottom:1px solid #334155;
+}
