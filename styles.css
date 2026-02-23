@@ -29,14 +29,14 @@ text-align:center;
 table{width:100%;border-collapse:collapse;margin-top:20px}
 td,th{padding:10px;border-bottom:1px solid #334155}
 
-select{
-padding:6px;
+.result-select{
+padding:6px 10px;
 border-radius:6px;
 border:none;
-color:white;
 font-weight:bold;
+color:#fff;
 }
 
-select.won{background:#065f46;}
-select.lost{background:#7f1d1d;}
-select.pending{background:#334155;}
+.result-select.won{background:#065f46;}
+.result-select.lost{background:#7f1d1d;}
+.result-select.pending{background:#334155;}
