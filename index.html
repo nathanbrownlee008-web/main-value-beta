@@ -19,19 +19,18 @@
 </header>
 
 <section id="betsSection">
-<div id="betsGrid"></div>
+<div id="betsGrid" class="bets-grid"></div>
 </section>
 
 <section id="trackerSection" style="display:none;">
-
-<div class="bankroll-top">
+<div class="tracker-controls">
 <label>Starting Bankroll</label>
 <input type="number" id="startingBankroll" value="1000"/>
 <button onclick="exportCSV()">Export CSV</button>
 </div>
 
 <div class="stats-grid">
-<div>Bankroll<br><strong>£<span id="currentBankroll">0</span></strong></div>
+<div>Bankroll<br><strong>£<span id="bankroll">0</span></strong></div>
 <div>Profit<br><strong>£<span id="profit">0</span></strong></div>
 <div>ROI<br><strong><span id="roi">0</span>%</strong></div>
 <div>Win Rate<br><strong><span id="winrate">0</span>%</strong></div>
@@ -42,7 +41,9 @@
 
 <canvas id="chart"></canvas>
 
+<div class="tracker-table-wrapper">
 <div id="trackerTable"></div>
+</div>
 
 </section>
 
