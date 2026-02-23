@@ -1,3 +1,4 @@
+
 const SUPABASE_URL="https://krmmmutcejnzdfupexpv.supabase.co";
 const SUPABASE_KEY="sb_publishable_3NHjMMVw1lai9UNAA-0QZA_sKM21LgD";
 const client=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
@@ -81,12 +82,13 @@ html+=`<tr>
 html+="</table>";
 trackerTable.innerHTML=html;
 
-document.getElementById("bankroll").innerText=bankroll.toFixed(2);
-document.getElementById("profit").innerText=profit.toFixed(2);
-document.getElementById("roi").innerText=totalStake?((profit/totalStake)*100).toFixed(1):0;
-document.getElementById("avgOdds").innerText=data.length?(totalOdds/data.length).toFixed(2):0;
-document.getElementById("winrate").innerText=data.length?((wins/data.length)*100).toFixed(1):0;
-document.getElementById("lossrate").innerText=data.length?((losses/data.length)*100).toFixed(1):0;
+bankrollElem.innerText=bankroll.toFixed(2);
+profitElem.innerText=profit.toFixed(2);
+roiElem.innerText=totalStake?((profit/totalStake)*100).toFixed(1):0;
+winrateElem.innerText=data.length?((wins/data.length)*100).toFixed(1):0;
+winsElem.innerText=wins;
+lossesElem.innerText=losses;
+avgOddsElem.innerText=data.length?(totalOdds/data.length).toFixed(2):0;
 
 renderChart(history);
 }
@@ -105,7 +107,7 @@ function renderChart(history){
 if(chart) chart.destroy();
 chart=new Chart(document.getElementById("chart"),{
 type:"line",
-data:{labels:history.map((_,i)=>i+1),datasets:[{data:history,tension:0.4,fill:false}]},
+data:{labels:history.map((_,i)=>i+1),datasets:[{data:history,tension:0.4}]},
 options:{responsive:true,plugins:{legend:{display:false}}}
 });
 }
@@ -126,6 +128,14 @@ a.click();
 }
 
 startingBankroll.addEventListener("input",loadTracker);
+
+const bankrollElem=document.getElementById("bankroll");
+const profitElem=document.getElementById("profit");
+const roiElem=document.getElementById("roi");
+const winrateElem=document.getElementById("winrate");
+const winsElem=document.getElementById("wins");
+const lossesElem=document.getElementById("losses");
+const avgOddsElem=document.getElementById("avgOdds");
 
 loadBets();
 loadTracker();
